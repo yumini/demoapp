@@ -1,0 +1,32 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listado de Marcas</h3>
+    <div align="right">
+      <%= link_to new_marca_path, class: 'btn btn-success' do %>
+        <i class="glyphicon glyphicon-plus"></i> Nuevo
+      <% end %>
+
+  </div>
+  </div>
+  <div class="panel-body">
+       <table class="table table-striped">
+
+        <tr>
+          <th>Nombre de Marca</th>
+          <th colspan="2"></th>
+        </tr>
+     
+
+      <tbody>
+        <% @marcas.each do |marca| %>
+          <tr>
+            <td><%= marca.name_marca %></td>
+            <td><%= link_to 'Editar', edit_marca_path(marca), class: 'btn btn-info btn-xs' %></td>
+            <td><%= link_to 'Eliminar', marca, method: :delete, data: { confirm: 'Desea Eliminar el registro?' }, class: 'btn btn-danger btn-xs' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @marcas, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

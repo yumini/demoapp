@@ -1,0 +1,54 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listado de Productos</h3>
+    <%= form_tag(products_path, :method => "get", id: "search-form") do %>
+    <div class="col-sm-offset-3 col-sm-5">
+    <%= text_field_tag :search, params[:search], class: 'form-control' ,placeholder: "Buscar Producto" %>
+    </div>
+    <div class="col-sm-offset-0 col-sm-2">
+    <%= submit_tag "Search", class: 'btn btn-info' %>
+    </div>
+    <% end %>
+    <div align="right">
+      <%= link_to new_product_path, class: 'btn btn-success' do %>
+        <i class="glyphicon glyphicon-plus"></i> Nuevo
+      <% end %>
+
+  </div>
+  </div>
+
+
+
+  <div class="panel-body">
+       <table class="table table-striped">
+
+        <tr>
+          <th>Categoria</th>
+          <th>Nombre de Producto</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Precio</th>
+          <th>Descripcion</th>
+          <th colspan="2"></th>
+        </tr>
+     
+
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.category.description %></td>
+            <td><%= product.product_name %></td>
+            <td><%= product.marca.name_marca %></td>
+            <td><%= product.modelo.name_model %></td>
+            <td><%= number_to_currency(product.price, unit: "S/.") %></td>
+            <td><%= product.description %></td>
+            <td><%= link_to 'Editar', edit_product_path(product), class: 'btn btn-info btn-xs' %></td>
+            <td><%= link_to 'Eliminar', Product, method: :delete, data: { confirm: 'Desea Eliminar el registro?' }, class: 'btn btn-danger btn-xs' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
+

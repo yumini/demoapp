@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title)%> | Systems</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'dashboard' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'shared/navbar' %>
+<% if user_signed_in? %>
+  
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">Menú</a>
+            <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+            <li><%= link_to 'Categorias', categories_path %></li>
+            <li><%= link_to 'Modelos', modelos_path %></li>
+            <li><%= link_to 'Marcas', marcas_path %></li>
+            <li><%= link_to 'Productos', products_path %></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="#">Compras</a></li>
+            <li><a href="#">Ventas</a></li>
+          </ul>
+        </div>
+       
+      
+
+        <div class="col-sm-3 col-sm-offset-2 col-md-8 col-md-offset-1 main">
+        	<div class="row placeholders">
+        	  	
+        	<%= yield %>
+        	</div>
+        </div>
+      </div>
+</div>
+<% else %>
+
+		<div class="main-page-container <%= controller.controller_name%>">
+			
+   		  <%= yield %>
+		</div>
+
+<% end %>
+
+
+<footer>
+    <p>&copy; 2015 Company, Inc.</p>
+</footer>
+
+</body>
+</html>

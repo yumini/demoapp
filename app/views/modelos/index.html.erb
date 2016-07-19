@@ -1,0 +1,32 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listado de Modelos</h3>
+    <div align="right">
+      <%= link_to new_modelo_path, class: 'btn btn-success' do %>
+        <i class="glyphicon glyphicon-plus"></i> Nuevo
+      <% end %>
+
+  </div>
+  </div>
+  <div class="panel-body">
+       <table class="table table-striped">
+
+        <tr>
+          <th>Nombre de Modelo</th>
+          <th colspan="2"></th>
+        </tr>
+     
+
+      <tbody>
+        <% @modelos.each do |modelo| %>
+          <tr>
+            <td><%= modelo.name_model %></td>
+            <td><%= link_to 'Editar', edit_modelo_path(modelo), class: 'btn btn-info btn-xs' %></td>
+            <td><%= link_to 'Eliminar', modelo, method: :delete, data: { confirm: 'Desea Eliminar el registro?' }, class: 'btn btn-danger btn-xs' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @modelos, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SYSTEMS</a>
+    </div>
+
+      <% if user_signed_in? %>
+          
+        <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-user"></span><%= current_user.username %> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+          <li role="presentation"><%= link_to 'Cambiar contraseña', edit_user_registration_path %> </li>
+          <li role="presentation"><%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete %> </li>
+          </ul>
+        </li>
+              
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="<%= yield(:home)%>"><%= link_to "Home", pages_home_path%></li>
+          <li class="<%= yield(:about)%>"><%= link_to "About", pages_about_path%></li>
+          <li class="<%= yield(:contact)%>"><%= link_to "Contact", pages_contact_path%></li>
+          <li class="<%= yield(:login)%>"><%= link_to 'Login ', new_user_session_path %></li>
+         </ul>
+    
+      <% end %>
+      
+  </div><!-- /.container-fluid -->
+</nav>

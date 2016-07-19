@@ -1,0 +1,19 @@
+<%= form_for @modelo, :html => { :role=>"form", :class=>"form-horizontal" } do |f| %>
+
+ <div class="form-group<%= @modelo.errors[:description].any? ? " has-error has-feedback" : "" %>">
+  
+    <%= f.label :name_model, "Nombre de Modelo" %><br>
+   <div class="col-sm-10">  
+  
+    <%= f.text_field :name_model, class: "form-control", autofocus: true %>
+         <%if @modelo.errors[:name_model].any? %>
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        <p class="bg-warning"><%= @modelo.errors[:name_model].to_s[/\w([^"]*)/] %></p>
+      <% end -%>
+    </div>
+
+  <div class="actions">
+    <%= f.submit nil,  value: 'Guardar', class: 'btn btn-primary' %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Listado de Categorias</h3>
+    <div align="right">
+      <%= link_to new_category_path, class: 'btn btn-success' do %>
+        <i class="glyphicon glyphicon-plus"></i> Nuevo
+      <% end %>
+
+  </div>
+  </div>
+  <div class="panel-body">
+       <table class="table table-striped">
+
+        <tr>
+          <th>Descripción</th>
+          <th colspan="2"></th>
+        </tr>
+     
+
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.description %></td>
+            <td><%= link_to 'Editar', edit_category_path(category), class: 'btn btn-info btn-xs' %></td>
+            <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: 'Desea Eliminar el registro?' }, class: 'btn btn-danger btn-xs' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @categories, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
+

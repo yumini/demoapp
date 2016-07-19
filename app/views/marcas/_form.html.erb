@@ -1,0 +1,19 @@
+<%= form_for @marca, :html => { :role=>"form", :class=>"form-horizontal" } do |f| %>
+
+ <div class="form-group<%= @marca.errors[:description].any? ? " has-error has-feedback" : "" %>">
+  
+    <%= f.label :name_marca, "Nombre de Marca" %><br>
+   <div class="col-sm-10">  
+  
+    <%= f.text_field :name_marca, class: "form-control", autofocus: true %>
+         <%if @marca.errors[:name_marca].any? %>
+        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        <p class="bg-warning"><%= @marca.errors[:name_marca].to_s[/\w([^"]*)/] %></p>
+      <% end -%>
+    </div>
+
+  <div class="actions">
+    <%= f.submit nil,  value: 'Guardar', class: 'btn btn-primary' %>
+  </div>
+</div>
+<% end %>

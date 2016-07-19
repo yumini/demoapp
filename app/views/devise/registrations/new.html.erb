@@ -1,0 +1,42 @@
+<div class="page-header">
+    <div class="container" align="center">
+      <h2>Registro de Usuario</h2>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-sm-3"> </div>  
+    <div class="col-sm-3 col-md-6">   
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+                <div class="form-group">
+                    <%= f.label :username, "Usuario", for: "username"%>
+                    <%= f.text_field :username, class: "form-control", autofocus: true, placeholder: "Usuario"%>
+                </div> 
+                <div class="form-group" >
+                  <%= f.label :email, "Correo",for: "user_email"%><br />
+                  <%= f.email_field :email, class: "form-control", placeholder: "Introduce tu correo" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password, "Contraseña", for: "user_password"%>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %><br />
+                  <%= f.password_field :password, class: "form-control", autocomplete: "off", placeholder: "Contraseña" %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password_confirmation, "Confirmar Contraseña", for: "password_confirmation" %><br />
+                  <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+                </div>
+
+                <div class="actions">
+                  <%= f.submit "Registrar", class: "btn btn-success" %>
+                </div>
+        <% end %>
+
+    </div>
+    <div class="col-sm-3"> </div>
+</div>
+</div>
